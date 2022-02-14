@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  region = "eu-west-1"
+  region = "ap-southeast-1"
 }
 
 ################################################################################
@@ -13,7 +13,7 @@ locals {
 module "vpc" {
   source = "../../"
 
-  name = "simple-example"
+  name = "test-vpc"
   cidr = "10.0.0.0/16"
 
   azs             = ["${local.region}a", "${local.region}b", "${local.region}c"]
@@ -26,7 +26,7 @@ module "vpc" {
   single_nat_gateway = true
 
   public_subnet_tags = {
-    Name = "overridden-name-public"
+    Name = "public-subnet"
   }
 
   tags = {
@@ -35,6 +35,6 @@ module "vpc" {
   }
 
   vpc_tags = {
-    Name = "vpc-name"
+    Name = "dev-test"
   }
 }
